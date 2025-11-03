@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ESP LED Control</title>
+</head>
+<body>
+  <h1>ESP LED Remote Control</h1>
+  <p>Status: <span id="status">—</span></p>
+  <button onclick="send('ON')">Turn ON</button>
+  <button onclick="send('OFF')">Turn OFF</button>
+
+  <script>
+    const URL = "https://osvaldoramirezhernandez.com/Led/control.php"; 
+
+    async function send(state) {
+      await fetch(URL, {
+        method: "PUT",
+        headers: { "Content-Type": "text/plain" },
+        body: state
+      });
+      document.getElementById("status").textContent = state;
+    }
+  </script>
+</body>
+</html>
